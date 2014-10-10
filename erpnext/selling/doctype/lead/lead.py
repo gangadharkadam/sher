@@ -98,6 +98,23 @@ def _make_customer(source_name, target_doc=None, ignore_permissions=False):
 
 	return doclist
 
+
+@frappe.whitelist()
+def make_customer1(source_name, target_doc=None):
+	return _make_customer1(source_name, target_doc)
+
+def _make_customer1(source_name, target_doc=None, ignore_permissions=False):
+	doclist = get_mapped_doc("Book a Voyage", source_name,{
+		"Book a Voyage": {
+			"doctype": "Review Booking Details",
+			"field_map": {
+				"source": "source",
+
+			}
+		}}, target_doc, ignore_permissions=ignore_permissions)
+	return doclist
+
+
 @frappe.whitelist()
 def make_opportunity(source_name, target_doc=None):
 	target_doc = get_mapped_doc("Lead", source_name,
@@ -138,3 +155,21 @@ def get_lead_details(lead):
 	set_address_details(out, lead, "Lead")
 
 	return out
+
+
+
+
+
+@frappe.whitelist()
+def make_customer2(source_name, target_doc=None):
+	return _make_customer2(source_name, target_doc)
+
+def _make_customer2(source_name, target_doc=None, ignore_permissions=False):
+	doclist = get_mapped_doc("Review Booking Details", source_name,
+		{"Review Booking Details": {
+			"doctype": "Make Payment",
+			"field_map": {
+				"amount": "amount"
+			}
+		}}, target_doc, ignore_permissions=ignore_permissions)
+	return doclist

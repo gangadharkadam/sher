@@ -35,7 +35,7 @@ erpnext.selling.QuotationController = erpnext.selling.SellingController.extend({
 			cur_frm.appframe.add_button(__('Send SMS'), cur_frm.cscript.send_sms, "icon-mobile-phone");
 		}
 
-		if (this.frm.doc.docstatus===0) {
+		/*if (this.frm.doc.docstatus===0) {
 			cur_frm.add_custom_button(__('From Opportunity'),
 				function() {
 					frappe.model.map_current_doc({
@@ -51,7 +51,7 @@ erpnext.selling.QuotationController = erpnext.selling.SellingController.extend({
 						}
 					})
 				}, "icon-download", "btn-default");
-		}
+		}*/
 
 		if (!doc.__islocal) {
 			cur_frm.communication_view = new frappe.views.CommunicationList({
